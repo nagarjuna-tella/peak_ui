@@ -8,11 +8,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import formStyle from './FormStyle';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -39,9 +41,12 @@ const Login = () => {
             const response = await axios.post('http://localhost:8000/login/', credentials);
             console.log(response.data);
             // Save the token, and redirect or show success message
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('username', credentials.username); // Save username
             setSnackbarMessage('Login successful!');
             setSnackbarSeverity('success');
             setOpenSnackbar(true);
+            navigate('/dashboard');
         } catch (error) {
             console.error(error);
             // Handle login errors

@@ -6,7 +6,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Register from './components/Register';
 import Login from './components/Login';
-import Home from './components/Home'; // Assuming you have a Home component
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
+import ChatScreen from './components/ChatScreen';
 
 
 const App = () => {
@@ -16,6 +18,8 @@ const App = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/chat" element={<ChatScreen />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
