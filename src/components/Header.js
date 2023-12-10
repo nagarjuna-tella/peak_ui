@@ -27,7 +27,7 @@ const Header = () => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h6" component={Link}  to="/home" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" component={Link}  to="/" sx={{ flexGrow: 1 }}>
                     Peak UI
                 </Typography>
                 {isLoggedIn && (
