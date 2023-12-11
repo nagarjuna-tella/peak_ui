@@ -81,7 +81,7 @@ const Home = () => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Box bgcolor="background.default" style={{ padding: 20 }} height={'83vh'}>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
-                    <Typography variant="h4" gutterBottom>Task List</Typography>
+                    <Typography color="#F8C662" variant="h4" gutterBottom>Task List</Typography>
                     <Button variant="contained" color="primary" onClick={() => setDrawerOpen(true)}>
                         New Task
                     </Button>
