@@ -13,25 +13,6 @@ const Home = () => {
     const [newTask, setNewTask] = useState({ name: '', taskDescription: '', status: 'Pipeline', application: '', deadline: null });
     const statusOptions = ["Pipeline", "In Progress", "On Hold", "Completed"];
 
-    // const getUserNameById = (userId) => {
-    //     const user = users.find(user => user.id === userId);
-    //     return user ? user.username : 'Unknown User';
-    // };
-
-    // const getApplicationNameById = (applicationId) => {
-    //     const application = applications.find(app => app.id === applicationId);
-    //     return application ? application.name : 'Unknown Application';
-    // };
-
-    // const taskRows = tasks.map((task, index) => (
-    //     <TableRow key={index}>
-    //         <TableCell>{getUserNameById(task.user)}</TableCell>
-    //         <TableCell>{task.name}</TableCell>
-    //         <TableCell>{getApplicationNameById(task.application_id)}</TableCell>
-    //         <TableCell style={{ color: getStatusColor(task.status) }}>{task.status}</TableCell>
-    //         <TableCell>{task.deadline}</TableCell>
-    //     </TableRow>
-    // ));
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/tasks/')
@@ -89,16 +70,16 @@ const Home = () => {
     const getStatusColor = (status) => {
         switch (status) {
             case 'Pipeline': return '#2DCCFF';
-            case 'In Progress': return '#FCE83A';
-            case 'On Hold': return '#A4ABB6';
-            case 'Completed': return '#56F000';
+            case 'In Progress': return '#FFFF00';
+            case 'On Hold': return '#BA3F38';
+            case 'Completed': return '#006400';
             default: return 'inherit';
         }
     };
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Box style={{ padding: 20 }} height={'83vh'}>
+            <Box bgcolor="background.default" style={{ padding: 20 }} height={'83vh'}>
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                     <Typography variant="h4" gutterBottom>Task List</Typography>
                     <Button variant="contained" color="primary" onClick={() => setDrawerOpen(true)}>
@@ -173,7 +154,7 @@ const Home = () => {
 
                 <TableContainer component={Paper} style={{ marginTop: 20 }}>
                     <Table aria-label="simple table">
-                        <TableHead style={{ backgroundColor: '#f5f5f5' }}>
+                        <TableHead style={{ backgroundColor: '#7fb3d5' }}>
                             <TableRow>
                                 <TableCell><strong>Name</strong></TableCell>
                                 <TableCell><strong>Task</strong></TableCell>
@@ -184,11 +165,11 @@ const Home = () => {
                         </TableHead>
                         <TableBody>
                             {tasks.map((task, index) => (
-                                <TableRow key={index}>
+                                <TableRow key={index} style={{ backgroundColor: index % 2 === 0 ? 'lightgrey' : 'white' }}>
                                     <TableCell>{task.user}</TableCell>
                                     <TableCell>{task.name}</TableCell>
                                     <TableCell>{task.application_id}</TableCell>
-                                    <TableCell style={{ color: getStatusColor(task.status) }}>{task.status}</TableCell>
+                                    <TableCell><strong style={{ color: getStatusColor(task.status) }}>{task.status}</strong></TableCell>
                                     <TableCell>{task.deadline}</TableCell>
                                 </TableRow>
                             ))}

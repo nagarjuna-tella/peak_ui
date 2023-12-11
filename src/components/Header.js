@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Button } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import LogoIcon from '../assets/logo.png'; // Replace 'logo.png' with your icon's filename
 
 const Header = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,27 +20,29 @@ const Header = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('username'); // Clear username as well
-        handleClose(); // Close the menu
-        navigate('/login'); // Redirect to login or home page
+        localStorage.removeItem('username');
+        handleClose();
+        navigate('/login');
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{ backgroundColor: '#034f84' }}>
             <Toolbar>
-                <Typography variant="h6" component={Link}  to="/" sx={{ flexGrow: 1 }}>
-                    Peak UI
-                </Typography>
+                <IconButton
+                    component={Link}
+                    to="/"
+                    color="inherit"
+                    aria-label="Home"
+                >
+                    <img src={LogoIcon} alt="Logo" height="50" width="auto" /> {/* Adjust the height as needed */}
+                </IconButton>
                 {isLoggedIn && (
-                    <Button color="inherit" component={Link} to="/dashboard">
-                        Dashboard
-                    </Button>
+                    <Button color="inherit" component={Link} to="/dashboard">Dashboard</Button>
                 )}
                 {isLoggedIn && (
-                    <Button color="inherit" component={Link} to="/chat">
-                        Chat
-                    </Button>
+                    <Button color="inherit" component={Link} to="/chat">Chat</Button>
                 )}
+                <div style={{ flexGrow: 1 }}></div> {/* This pushes the account icon to the right */}
                 <div>
                     <IconButton
                         size="large"

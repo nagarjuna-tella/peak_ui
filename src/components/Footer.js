@@ -6,7 +6,7 @@ import { Container, Typography, Box } from '@mui/material';
 
 function Footer() {
     return (
-        <Container component="footer" maxWidth={false} style={{ marginTop: 'auto', backgroundColor: '#f5f5f5', padding: '10px 0' }}>
+        <Container component="footer" maxWidth={false} style={{ marginTop: 'auto', backgroundColor: '#034f84', padding: '10px 0' }}>
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Typography variant="body2" color="textSecondary" style={{ flexGrow: 1, textAlign: 'center' }}>
                     Peak © {new Date().getFullYear()}
